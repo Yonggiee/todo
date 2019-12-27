@@ -1,0 +1,69 @@
+#todo {
+  background-image: url('leaf.jpg');
+  background-attachment: fixed;
+  min-height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.head {
+  color: rgb(8, 105, 66);
+  text-align: center;
+  font-family: Snell Roundhand, cursive;
+  padding-bottom: 20px;
+}
+
+#todo .calendar {
+  border-collapse: collapse;
+  width: 75%;
+  margin-left:15%; 
+  margin-right:15%;
+
+  td, th {
+    font-family: "Lucida Grande", arial, helvetica, sans-serif;
+    font-size: 10px;
+    padding: 6px;
+    border: 1px solid #999;
+  }
+
+  th {
+    background: rgb(70, 135, 191);
+    color: rgb(255, 255, 0);
+    text-align: center;
+    width: 14.2857142857143%;
+  }
+
+  td {
+    background: rgba(255, 255, 255, 0.585);
+    color: #777;
+    height: 80px;
+    vertical-align: top;
+    font-size: 16px;
+  }
+
+  .notmonth, .notmonth a { color: #CCC; }
+  .today { background-color: rgb(235, 209, 81); }
+}
+
+#todo #month {
+  margin: 0;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+  a {
+    text-decoration: none;
+    padding: 0 10px;
+    color: #999;
+  }
+}
+
+#todo ul {
+  font-size: 11px;
+  padding-left: 20px;
+}
+
+#strike {
+  text-decoration: line-through;
+}

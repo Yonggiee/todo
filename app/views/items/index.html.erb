@@ -1,0 +1,125 @@
+<%-# enhanced for loop to output all items with title and description-%>
+<%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class = "background-index"> 
+    <div class = "menu">
+        <%= link_to "Main", root_path, id: "font-colour" %>
+        <%= link_to "Calendar", items_calendar_path, method: :get, id: "font-colour" %>
+    </div>
+    <div class = "col text-center">
+
+        <div id = "title"> <h1> TODO LIST </h1> </div>
+
+        <%= form_tag items_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], value: "" %>
+            <%= hidden_field_tag :type, params[:type], value: 1 %>
+            <%= button_tag type: 'submit' do %>
+               <i class="fa fa-search" aria-hidden="true"></i>
+            <% end %>
+        <% end %>
+        
+        <div class="search-box">
+            <%= form_tag items_path, :method => 'get' do %>
+                <%= hidden_field_tag :type, params[:type], value: 2 %>
+                <%= select_tag(:search, options_for_select(["", "Show All"] | @categories), 
+                onchange: "this.form.submit();") %>
+            <% end %>
+        </div>
+        
+        <div class = "translucent">
+            <% if @expired.count > 0 %>
+                <div class = "status-show" >
+                    <h2 id = "red">Expired</h2>
+                </div>
+                
+                <% @expired.each do |item| %>
+                        <div class = "row" style="display: flex; align-items: center;">
+                            <div class = "col-md-8">
+                                <h3><%= link_to item.title, item , id: "font-colour" %></h3>    
+                                <p><%=  if item.description.length > 70
+                                            item.description[0..70].gsub(/\s\w+\s*$/, '...')
+                                        else 
+                                            item.description
+                                        end
+                                %></p>  
+
+                            </div>     
+                    
+                            <%= link_to complete_item_path(item), id: "font-colour", method: :patch do %>
+                                <i class="fa fa-square-o fa-2x"></i>
+                            <% end %>
+                        
+                            <div class = "col-md-1">
+                                <%= link_to item_path(item), id: "font-colour", method: :delete do %>
+                                    <i class="fa fa-trash fa-2x"></i>
+                                <%end%>
+                            </div> 
+                        </div>
+                <% end %>
+            <% end %>
+
+            <% if @onGoing.count > 0 %>
+                <div class = "status-show" >
+                    <h2 id= "blue">Ongoing</h2>
+                </div>
+                
+                <% @onGoing.each do |item| %>
+                        <div class = "row" style="display: flex; align-items: center;">
+                            <div class = "col-md-8">
+                                <h3><%= link_to item.title, item , id: "font-colour" %></h3>    
+                                <p><%=  if item.description.length > 70
+                                            item.description[0..70].gsub(/\s\w+\s*$/, '...')
+                                        else 
+                                            item.description
+                                        end
+                                %></p>  
+                            </div>     
+
+                            <%= link_to complete_item_path(item), id: "font-colour", method: :patch do %>
+                                <i class="fa fa-square-o fa-2x"></i>
+                            <% end %>
+                            
+                            <div class = "col-md-1">
+                                <%= link_to item_path(item), id: "font-colour", method: :delete do %>
+                                    <i class="fa fa-trash fa-2x"> </i>
+                                <%end%>
+                            </div> 
+                        </div>
+                <% end %>
+            <% end %>
+
+            <% if @completed.count > 0 %>
+                <div class = "status-show" >
+                    <h2 id= "gold">Completed</h2>
+                </div>
+
+                <% @completed.each do |item| %>
+                        <div class = "row" style="display: flex; align-items: center;">
+                            <div class = "col-md-8">
+                                <h3><strike><%= link_to item.title, item, id: "font-colour" %></strike></h3>               
+                                <p><%=  if item.description.length > 70
+                                            item.description[0..70].gsub(/\s\w+\s*$/, '...')
+                                        else 
+                                            item.description
+                                        end
+                                %></p> 
+                            </div> 
+                            
+                            <%= link_to undo_complete_item_path(item), id: "font-colour", method: :patch do %>
+                                <i class="fa fa-check-square-o fa-2x"></i>
+                            <% end %>
+
+                            <div class = "col-md-1">
+                                <%= link_to item_path(item), id: "font-colour", method: :delete do %>
+                                    <i class="fa fa-trash fa-2x"></i>
+                                <%end%>
+                            </div> 
+                        </div>
+                <% end %>
+            <% end %>
+        </div>
+
+        <%= link_to "New Item", new_item_path, id: "font-colour" %>
+    </div>
+</div>
+

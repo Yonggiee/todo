@@ -1,0 +1,32 @@
+<div id="todo">
+  <div class = "menu">
+    <%= link_to "Main", root_path, id: "font-colour" %>
+    <%= link_to "Calendar", items_calendar_path, method: :get, id: "font-colour" %>
+  </div>
+
+  <div class="head"><h1> Calendar with TODO expiry </h1></div>
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @items_by_date[date] %>
+      <ul>
+        <% @items_by_date[date].each do |item| %>
+          <% if item.completed %>
+            <strike><li><%= link_to item.title, item %></li></strike>
+          <% elsif item.expiryDate < @date %>
+            <li><%= link_to item.title, item, id: "red" %></li>
+          <% else %>
+            <li><%= link_to item.title, item, id: "blue" %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+
+    <%= link_to "New Item", new_item_path, id: "font-colour" %>
