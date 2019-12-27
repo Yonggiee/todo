@@ -58,6 +58,4 @@ gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 gem 'simple_form'
 
 
-group :production do
-  gem 'pg'
-end
+gem 'pg'
