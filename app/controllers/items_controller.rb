@@ -2,20 +2,21 @@ class ItemsController < ApplicationController
   before_action :find_item, only: [:show, :edit, :update, :destroy, :complete, :undo_complete]
 
   def index
-    if params[:search] == "Show All" || params[:search] == ""
-      redirect_to root_path
-    else 
-      @items = Item.search(params[:search], params[:type])  
-      @completed = @items.select { |item| item.completed }    
-      @onGoing = @items.select { |item| !item.completed && !(item.expiryDate < Date.today) }  
-      @expired = @items.select { |item| !item.completed && (item.expiryDate < Date.today) }                    
+    if user_signed_in?
+      if params[:search] == "Show All" || params[:search] == ""
+        redirect_to root_path
+      else 
+        @items = Item.search(params[:search], params[:type], Item.where(:user_id => current_user.id))
+        @completed = @items.select { |item| item.completed }    
+        @onGoing = @items.select { |item| !item.completed && !(item.expiryDate < Date.today) }  
+        @expired = @items.select { |item| !item.completed && (item.expiryDate < Date.today) }                    
+      end                                                
+      @categories = Item.where(:user_id => current_user.id).distinct.pluck(:category).sort()
     end
-    @item = Item.new                                                      
-    @categories = Item.distinct.pluck(:category).sort()
   end                                                                            
 
   def new
-    @item = Item.new
+    @item = current_user.items.build
     respond_to do |format|
       format.html
       format.js
@@ -23,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = current_user.items.build(item_params)
     @item.completed = false
     if @item.save
       redirect_to root_path

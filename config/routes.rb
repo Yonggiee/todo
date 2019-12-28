@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'items#index'
+
   get 'items/calendar' => 'items#calendar'
   resources :items do 
     member do

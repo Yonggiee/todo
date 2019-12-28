@@ -12,6 +12,30 @@
   </head>
 
   <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "TODO", root_path, id: "font-colour",  class: "navbar-brand" %>
+          <%= link_to "Calendar", items_calendar_path, method: :get, id: "font-colour", class: "navbar-brand"  %>
+        </div>
+        <div class="nav navbar-nav">
+          <li><%= link_to "Sign Up", new_user_registration_path %>
+          <% if current_user.present? %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+     <!-- to implement users using devise gem -->
+    <div class="devise-form">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+
     <%= yield %>
   </body>
 </html>

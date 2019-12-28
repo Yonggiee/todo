@@ -57,5 +57,5 @@ gem "react-rails", "~> 2.6"
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 gem 'simple_form'
 
-
+gem 'devise'
 gem 'pg'

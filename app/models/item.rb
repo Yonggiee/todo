@@ -1,14 +1,15 @@
 class Item < ApplicationRecord
-    def self.search(search, type)
+    belongs_to :user
+    def self.search(search, type, arr)
         if search
             key = "%#{search}%"
             if type == '1'               
-                Item.where('title LIKE :search OR description LIKE :search', search: key)
+                arr.where('title LIKE :search OR description LIKE :search', search: key)
             elsif type == '2'
-                Item.where('category LIKE :search', search: key)
+                arr.where('category LIKE :search', search: key)
             end
         else
-            all.order("created_at DESC") 
+            arr.order("created_at DESC") 
         end
     end
 end
