@@ -37,14 +37,12 @@
 .menu {
   padding-top: 20px;
   padding-right: 30px;
-  text-align: right;
-  word-spacing: 20px;
   font-size: 15px;
-  font-family: Bookman, URW;
   position: sticky;
-  background-color: rgba(255, 255, 255, 0);
   width: 100%;
   top: 0;
+  background-color: antiquewhite;
+  z-index: 2;
 }
 
 .status-show{

@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
   end
 
   def calendar
-    @items = Item.all
+    @items = Item.where(:user_id => current_user.id)
     @items_by_date = @items.group_by(&:expiryDate)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
