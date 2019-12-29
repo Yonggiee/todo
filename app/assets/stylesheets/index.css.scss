@@ -7,35 +7,49 @@ body, html {
     top: 50%;
     left: 25%;
     margin-top: -150px;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.537);
     width: 50%;
-    height: 25%;
+    height: 30%;
     display: grid;
     place-items: center;
     font-family: Impact, fantasy;
-    background: -webkit-linear-gradient(rgb(135, 127, 36), rgb(46, 213, 107));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
+
+    #welcome{    
+        font-size: 70px;
+        font-family: Noto Sans, sans-serif;
+        font-weight: bold;
+    }
+
+    #toContinue{
+        font-size: 20px;
+    }
 }
 
-.background-index{
-    background-image: url('table.jpg');
+.background-login{
+    background-image: url('trees.jpg');
     background-attachment: fixed;
     min-height: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
-    font-family: Bookman, URW;
-
-    color: black;
 }  
 
-#font-colour{
+.background-todo{
+    background-image: url('bridge dark.jpg');
+    background-attachment: fixed;
+    min-height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Bookman, URW;
     color: black;
-}
+
+    #font-colour{
+        color: black;
+    }
+}  
 
 .translucent {
     padding-top: 10px;
