@@ -1,0 +1,7 @@
+<%= form_for @item do |f| %>            
+  <%= f.text_field :title, placeholder: "Title"%>
+  <%= f.text_field :description, placeholder: "Description"%>
+  <%= f.text_field :category, placeholder: "Category" %>
+  <%= f.date_field :expiryDate %>
+  <%= f.submit 'submit' %>
+<% end %>

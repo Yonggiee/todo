@@ -7,6 +7,13 @@
         <%= render 'menu' %>
         <div class="col text-center">
 
+            <%= render 'new' %>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalLong">
+            More Details
+            </button>
+
             <div class="search-box">
                 <%= form_tag items_path, :method => 'get' do %>
                     <%= text_field_tag :search, params[:search], value: "" %>
@@ -69,7 +76,8 @@
                                             else 
                                                 item.description
                                             end
-                                    %></p>  
+                                    %></p>
+                                    <%= item.expiryDate %>  
                                 </div>     
 
                                 <%= link_to complete_item_path(item), id: "font-colour", method: :patch do %>
@@ -115,8 +123,6 @@
                     <% end %>
                 <% end %>
             </div>
-
-            <%= link_to "New Item", new_item_path, id: "font-colour" %>
         
         </div>
     </div>
@@ -133,4 +139,23 @@
         </div>
     </div>
 
- <% end %>
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Todo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <% if user_signed_in? %>
+                    <%= render 'form' %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,7 +23,14 @@
         </ul>
       <% end %>
     <% end %>
-    <%= link_to "New Item", new_item_path, id: "font-colour" %>
+    <div class="noExpiry">
+      <h4>Todo With No Expiry</h4>
+      <ul>
+        <% @items_noExpiry.each do |item| %>
+          <li><%= link_to item.title, item, id: "blue" %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 </div>
 

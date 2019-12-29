@@ -8,10 +8,11 @@ class ItemsController < ApplicationController
       else 
         @items = Item.search(params[:search], params[:type], Item.where(:user_id => current_user.id))
         @completed = @items.select { |item| item.completed }    
-        @onGoing = @items.select { |item| !item.completed && !(item.expiryDate < Date.today) }  
-        @expired = @items.select { |item| !item.completed && (item.expiryDate < Date.today) }                    
+        @onGoing = @items.select { |item| !item.completed && (item.expiryDate == nil || !(item.expiryDate < Date.today)) }  
+        @expired = @items.select { |item| !item.completed && !(item.expiryDate == nil || !(item.expiryDate < Date.today))  }        
       end                                                
       @categories = Item.where(:user_id => current_user.id).distinct.pluck(:category).sort()
+      @item = current_user.items.build
     end
   end                                                                            
 
@@ -69,6 +70,7 @@ class ItemsController < ApplicationController
       @items = Item.where(:user_id => current_user.id)
       @items_by_date = @items.group_by(&:expiryDate)
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
+      @items_noExpiry = @items.where(:expiryDate => nil)
     end
   end
 

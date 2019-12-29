@@ -6,6 +6,15 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  .noExpiry{
+    padding-left: 25%;
+    padding-top: 40px;
+
+    ul{
+      font-size: 17px;
+    }
+  }
 }
 
 .head {
@@ -68,3 +77,4 @@
 #strike {
   text-decoration: line-through;
 }
+

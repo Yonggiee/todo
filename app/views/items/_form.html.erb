@@ -3,18 +3,17 @@
   <%= f.input :description %>
   <%= f.input :category %>
   <%= f.input :expiryDate, label: "Expiry Date", as: :date %>
-  <%= f.button :submit, 'submit' %>
+  <%= f.button :submit, 'submit'%>
 <% end %>
 
 <%
 =begin %>
-<div class = "background_form" >
-  
-</div>
 
 <%= form_for @item do |f| %>            
   <%= f.text_field :title, label: "Todo" %>
   <%= f.text_field :description %>
+  <%= f.text_field :category %>
+  <%= f.date_field :expiryDate, label: "Expiry Date"%>
   <%= f.submit 'submit' %>
 <%
 =end %>

@@ -1,9 +1,11 @@
 <div class = "text-center background-show">
 
+    <%= render 'menu' %>
+
     <div class = "status-show" >
         <% if @item.completed %>
             <h2 id = "gold">Completed</h2>
-        <% elsif @item.expiryDate < Date.today %> 
+        <% elsif @item.expiryDate != nil && @item.expiryDate < Date.today %> 
             <h2 id = "red">Expired</h2>
         <% else %>
             <h2 id= "blue">Ongoing</h2>
