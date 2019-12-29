@@ -1,28 +1,30 @@
 <div id="todo">
-
-  <div class="head"><h1> Calendar with TODO expiry </h1></div>
-  <h2 id="month">
-    <%= link_to "<", date: @date.prev_month %>
-    <%= @date.strftime("%B %Y") %>
-    <%= link_to ">", date: @date.next_month %>
-  </h2>
-  <%= calendar @date do |date| %>
-    <%= date.day %>
-    <% if @items_by_date[date] %>
-      <ul>
-        <% @items_by_date[date].each do |item| %>
-          <% if item.completed %>
-            <strike><li><%= link_to item.title, item %></li></strike>
-          <% elsif item.expiryDate < @date %>
-            <li><%= link_to item.title, item, id: "red" %></li>
-          <% else %>
-            <li><%= link_to item.title, item, id: "blue" %></li>
+  <% if user_signed_in? %>
+    <div class="head"><h1> Calendar with TODO expiry </h1></div>
+    <h2 id="month">
+      <%= link_to "<", date: @date.prev_month %>
+      <%= @date.strftime("%B %Y") %>
+      <%= link_to ">", date: @date.next_month %>
+    </h2>
+    <%= calendar @date do |date| %>
+      <%= date.day %>
+      <% if @items_by_date[date] %>
+        <ul>
+          <% @items_by_date[date].each do |item| %>
+            <% if item.completed %>
+              <strike><li><%= link_to item.title, item %></li></strike>
+            <% elsif item.expiryDate < @date %>
+              <li><%= link_to item.title, item, id: "red" %></li>
+            <% else %>
+              <li><%= link_to item.title, item, id: "blue" %></li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     <% end %>
+    <%= link_to "New Item", new_item_path, id: "font-colour" %>
   <% end %>
 </div>
 
 
-    <%= link_to "New Item", new_item_path, id: "font-colour" %>
+  

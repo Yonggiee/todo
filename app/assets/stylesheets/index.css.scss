@@ -2,6 +2,23 @@ body, html {
     height: 100%;
 }
 
+.login{
+    position: fixed;
+    top: 50%;
+    left: 25%;
+    margin-top: -150px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.537);
+    width: 50%;
+    height: 25%;
+    display: grid;
+    place-items: center;
+    font-family: Impact, fantasy;
+    background: -webkit-linear-gradient(rgb(135, 127, 36), rgb(46, 213, 107));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .background-index{
     background-image: url('table.jpg');
     background-attachment: fixed;

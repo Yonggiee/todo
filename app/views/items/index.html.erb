@@ -1,7 +1,7 @@
 <%-# enhanced for loop to output all items with title and description-%>
 
-<div class = "background-index"> 
-    <div class = "col text-center">
+<div class="background-index"> 
+    <div class="col text-center">
         
         <% if user_signed_in? %>
             <%= form_tag items_path, :method => 'get' do %>
@@ -20,7 +20,7 @@
                 <% end %>
             </div>
             
-            <div class = "translucent">
+            <div class="translucent">
                 <% if @expired.count > 0 %>
                     <div class = "status-show" >
                         <h2 id = "red">Expired</h2>
@@ -114,7 +114,15 @@
             </div>
 
             <%= link_to "New Item", new_item_path, id: "font-colour" %>
+        <% else %>
+            <div class="login">
+                <h1>WELCOME</h1>
+                <h3>Login to Continue</h3>
+                <%= link_to "Sign Up", new_user_registration_path %>
+                <%= link_to "Login", new_user_session_path %>
+            </div>
         <% end %>
+
     </div>
 </div>
 
