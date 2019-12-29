@@ -1,5 +1,6 @@
 <div id="todo">
   <% if user_signed_in? %>
+    <%= render 'menu' %>
     <div class="head"><h1> Calendar with TODO expiry </h1></div>
     <h2 id="month">
       <%= link_to "<", date: @date.prev_month %>

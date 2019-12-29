@@ -15,22 +15,10 @@
  */
 @import "bootstrap";   
 
-//// maybe remove
-.menu {
-  padding-top: 20px;
-  padding-right: 30px;
-  font-size: 15px;
-  position: sticky;
-  width: 100%;
-  top: 0;
-  background-color: antiquewhite;
-  z-index: 1;
-}
 
 .status-show{
     position: relative;
     left: -25%;
-    transform: rotate(-20deg);
     font-family: Snell Roundhand, cursive; 
     font-weight: bold;
     pointer-events:none;

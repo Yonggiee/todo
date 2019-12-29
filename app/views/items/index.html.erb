@@ -1,25 +1,27 @@
 <%-# enhanced for loop to output all items with title and description-%>
 
+
 <% if user_signed_in? %>
 
     <div class="background-todo"> 
+        <%= render 'menu' %>
         <div class="col text-center">
-        
-            <%= form_tag items_path, :method => 'get' do %>
-                <%= text_field_tag :search, params[:search], value: "" %>
-                <%= hidden_field_tag :type, params[:type], value: 1 %>
-                <%= button_tag type: 'submit' do %>
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <% end %>
-            <% end %>
-            
+
             <div class="search-box">
                 <%= form_tag items_path, :method => 'get' do %>
-                    <%= hidden_field_tag :type, params[:type], value: 2 %>
-                    <%= select_tag(:search, options_for_select(["", "Show All"] | @categories), 
-                    onchange: "this.form.submit();") %>
+                    <%= text_field_tag :search, params[:search], value: "" %>
+                    <%= hidden_field_tag :type, params[:type], value: 1 %>
+                    <%= button_tag type: 'submit' do %>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <% end %>
                 <% end %>
             </div>
+            
+            <%= form_tag items_path, :method => 'get' do %>
+                <%= hidden_field_tag :type, params[:type], value: 2 %>
+                <%= select_tag(:search, options_for_select(["", "Show All"] | @categories), 
+                onchange: "this.form.submit();") %>
+            <% end %>
             
             <div class="translucent">
                 <% if @expired.count > 0 %>
@@ -122,6 +124,7 @@
 <% else %>
 
     <div class="background-login"> 
+        <%= render 'menu' %>
         <div class="login">
             <h1 id="welcome">Welcome!</h1>
             <h3 id="toContinue">Login to Continue</h3>

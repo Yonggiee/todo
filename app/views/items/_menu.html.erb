@@ -1,0 +1,17 @@
+<% if current_user.present? %>
+    <div class="menu">
+    <nav class="navbar navbar-default">
+        <div class="container">
+        <div class="navbar-header">
+            <% if user_signed_in? %>
+            <%= link_to "TODO", root_path, id: "font-colour",  class: "navbar-brand" %>
+            <%= link_to "Calendar", items_calendar_path, method: :get, id: "font-colour", class: "navbar-brand"  %>
+            <% end %>
+        </div>
+        <div class="nav navbar-nav">
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        </div>
+        </div>
+    </nav>
+    </div>
+<% end %>
