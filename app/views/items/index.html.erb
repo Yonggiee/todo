@@ -5,90 +5,107 @@
     <div class="background-todo"> 
         <%= render 'menu' %>
         <br><br>
-        <!-- Button trigger modal -->
-        <button type="button" class="button addTodo" data-toggle="modal" data-target="#exampleModalLong">
-            Add Todo
-        </button>
 
-        <div class="search-box">
+        <div style="margin-left:20%;">
+            <!-- Button trigger modal -->
+            <button type="button" class="button addTodo" data-toggle="modal" data-target="#exampleModalLong">
+                Add Todo
+            </button>
+
+            <div class="search-box">
+                <%= form_tag items_path, :method => 'get' do %>
+                    <%= text_field_tag :search, params[:search], value: "" %>
+                    <%= hidden_field_tag :type, params[:type], value: 1 %>
+                    <%= button_tag type: 'submit' do %>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <% end %>
+                <% end %>
+            </div>
+            
             <%= form_tag items_path, :method => 'get' do %>
-                <%= text_field_tag :search, params[:search], value: "" %>
-                <%= hidden_field_tag :type, params[:type], value: 1 %>
-                <%= button_tag type: 'submit' do %>
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <% end %>
+                <%= hidden_field_tag :type, params[:type], value: 2 %>
+                <%= select_tag(:search, options_for_select(["", "Show All"] | @categories), 
+                onchange: "this.form.submit();") %>
             <% end %>
-        </div>
-        
-        <%= form_tag items_path, :method => 'get' do %>
-            <%= hidden_field_tag :type, params[:type], value: 2 %>
-            <%= select_tag(:search, options_for_select(["", "Show All"] | @categories), 
-            onchange: "this.form.submit();") %>
-        <% end %>
-        
-        <div class="displayTodo">
-            <table style="width:60%; margin-left:20%;">
-                <tr>
-                    <th>Title</th>
-                    <th>Category</th>  
-                    <th style="width:45%">Description</th> 
-                    <th>Expiry</th>
-                    <th>Status</th> 
-                    <th style="width:6%"></th>
-                    <th style="width:8%"></th>
-                </tr>
 
-                <% @expired.each do |item| %>
-                    <tr>             
-                        <td><%= link_to item.title, item %></td>
-                        <td><%= item.category %></td>
-                        <td><%=  if item.description.length > 30
-                                    item.description[0..30].gsub(/\s\w+\s*$/, '...')
-                                else 
-                                    item.description
-                                end
-                        %></td>     
-                        <td><%= item.expiryDate %></td>    
-                        <td>expired</td>        
-                        <td><%= link_to "done", complete_item_path(item), method: :patch  %></td>
-                        <td><%= link_to "delete", item_path(item), method: :delete %></td>
+            <br><br>
+            
+            <div class="displayTodo">
+                <table style="width:80%">
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>  
+                        <th style="width:45%">Description</th> 
+                        <th>Expiry</th>
+                        <th>Status</th> 
+                        <th style="width:4%"></th>
+                        <th style="width:4%"></th>
                     </tr>
-                <% end %>
-        
-                <% @onGoing.each do |item| %>
-                    <tr> 
-                        <td><%= link_to item.title, item %></td>   
-                        <td><%= item.category %></td> 
-                        <td><%= if item.description.length > 30
-                                    item.description[0..30].gsub(/\s\w+\s*$/, '...')
-                                else 
-                                    item.description
-                                end
-                        %></td> 
-                        <td><%= item.expiryDate %></td>           
-                        <td>ongoing</td>     
-                        <td><%= link_to "done", complete_item_path(item), method: :patch %></td>       
-                        <td><%= link_to "delete", item_path(item), method: :delete %></td>                               
-                    </tr>
-                <% end %>
-                
-                <% @completed.each do |item| %>
-                    <tr> 
-                        <td><strike><%= link_to item.title, item, id: "font-colour" %></strike></td>   
-                        <td><%= item.category %></td>             
-                        <td><%=  if item.description.length > 30
-                                    item.description[0..30].gsub(/\s\w+\s*$/, '...')
-                                else 
-                                    item.description
-                                end
-                        %></td> 
-                        <td><%= item.expiryDate %></td>  
-                        <td>completed</td>  
-                        <td><%= link_to "undo", undo_complete_item_path(item), id: "font-colour", method: :patch %></td>
-                        <td><%= link_to "delete", item_path(item), id: "font-colour", method: :delete %></td>
-                    </tr>
-                <% end %>    
-            </table>
+
+                    <% @expired.each do |item| %>
+                        <tr>             
+                            <td><%= link_to item.title, item %></td>
+                            <td><%= item.category %></td>
+                            <td><%=  if item.description.length > 50
+                                        item.description[0..50].gsub(/\s\w+\s*$/, '...')
+                                    else 
+                                        item.description
+                                    end
+                            %></td>     
+                            <td><%= item.expiryDate %></td>    
+                            <td>expired</td>        
+                            <td><%= link_to complete_item_path(item), method: :patch do %>
+                                        <i class="fa fa-square-o fa-1x"></i>
+                                <% end %></td>
+                            <td><%= link_to item_path(item), method: :delete do %>
+                                    <i class="fa fa-trash fa-1x"></i>
+                                <%end%></td>  
+                        </tr>
+                    <% end %>
+            
+                    <% @onGoing.each do |item| %>
+                        <tr> 
+                            <td><%= link_to item.title, item %></td>   
+                            <td><%= item.category %></td> 
+                            <td><%= if item.description.length > 50
+                                        item.description[0..50].gsub(/\s\w+\s*$/, '...')
+                                    else 
+                                        item.description
+                                    end
+                            %></td> 
+                            <td><%= item.expiryDate %></td>           
+                            <td>ongoing</td>     
+                            <td><%= link_to complete_item_path(item), method: :patch do %>
+                                        <i class="fa fa-square-o fa-1x"></i>
+                                <% end %></td>     
+                            <td><%= link_to item_path(item), method: :delete do %>
+                                    <i class="fa fa-trash fa-1x"></i>
+                                <%end%></td>                               
+                        </tr>
+                    <% end %>
+                    
+                    <% @completed.each do |item| %>
+                        <tr> 
+                            <td><strike><%= link_to item.title, item, id: "font-colour" %></strike></td>   
+                            <td><%= item.category %></td>             
+                            <td><%=  if item.description.length > 50
+                                        item.description[0..50].gsub(/\s\w+\s*$/, '...')
+                                    else 
+                                        item.description
+                                    end
+                            %></td> 
+                            <td><%= item.expiryDate %></td>  
+                            <td>completed</td>  
+                            <td><%= link_to undo_complete_item_path(item), method: :patch do %>
+                                        <i class="fa fa-check-square-o fa-1x"></i>
+                                <% end %></td>
+                            <td><%= link_to item_path(item), method: :delete do %>
+                                    <i class="fa fa-trash fa-1x"></i>
+                                <%end%></td>  
+                        </tr>
+                    <% end %>    
+                </table>
+            </div>
         </div>
     </div>
 
