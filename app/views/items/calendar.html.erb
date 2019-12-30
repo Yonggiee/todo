@@ -4,7 +4,7 @@
     <div class="head"><h1> Calendar with TODO expiry </h1></div>
     <h2 id="month">
       <%= link_to "<", date: @date.prev_month %>
-      <%= @date.strftime("%B %Y") %>
+      <%= @date.strftime("%B %Y")%>
       <%= link_to ">", date: @date.next_month %>
     </h2>
     <%= calendar @date do |date| %>
@@ -23,6 +23,7 @@
         </ul>
       <% end %>
     <% end %>
+
     <div class="noExpiry">
       <h4>Todo With No Expiry</h4>
       <ul>

@@ -2,6 +2,30 @@ body, html {
     height: 100%;
 }
 
+.button{
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.addTodo {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.addTodo:hover {
+    background-color: white;
+    color: black;
+}
+
 .login{
     position: fixed;
     top: 50%;
@@ -36,7 +60,7 @@ body, html {
 }  
 
 .background-todo{
-    background-image: url('bridge dark.jpg');
+    background-image: url('trees.jpg');
     background-attachment: fixed;
     min-height: 100%;
     /* Center and scale the image nicely */
@@ -45,25 +69,35 @@ body, html {
     background-size: cover;
     font-family: Bookman, URW;
     color: black;
-
-    #font-colour{
-        color: black;
-    }
 }  
-
-.translucent {
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: rgba(255, 255, 255, 0.701);
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 25px;
-    display: block;
-}
 
 .search-box {
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
+.displayTodo{
+
+    td, th{
+        border: 1px solid rgba(89, 88, 88, 0.633);
+        padding-left: 8px;
+    }
+
+    td {
+        background: rgba(255, 255, 255, 0.708);
+        color: black;
+        font-size: 16px;
+    }
+
+    th {
+        background-color: black;
+        color: white;
+        border-top: none;
+    }
+
+    a {
+        color: black;
+    }
+
+}
+

@@ -4,9 +4,19 @@
   font-size: 15px;
   width: 100%;
   top: 0;
-  background-color: rgb(231, 246, 249);
+  background-color: rgb(31, 31, 31);
   z-index: 1;
   position: sticky;
+  font-family: Bookman, URW;
+}
+
+.status-show{
+    position: relative;
+    left: -25%;
+    font-family: Snell Roundhand, cursive; 
+    font-weight: bold;
+    pointer-events:none;
+    padding-top: 10px;
 }
 
 #blue{

@@ -4,9 +4,9 @@ class Item < ApplicationRecord
         if search
             key = "%#{search}%"
             if type == '1'               
-                arr.where('title LIKE :search OR description LIKE :search', search: key)
+                arr.where('title ILIKE :search OR description ILIKE :search', search: key)
             elsif type == '2'
-                arr.where('category LIKE :search', search: key)
+                arr.where('category ILIKE :search', search: key)
             end
         else
             arr.order("created_at DESC") 
