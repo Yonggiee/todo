@@ -86,7 +86,7 @@
                     
                     <% @completed.each do |item| %>
                         <tr> 
-                            <td><strike><%= link_to item.title, item, id: "font-colour" %></strike></td>   
+                            <td><strike><%= link_to item.title, item %></strike></td>   
                             <td><%= item.category %></td>             
                             <td><%=  if item.description.length > 50
                                         item.description[0..50].gsub(/\s\w+\s*$/, '...')
